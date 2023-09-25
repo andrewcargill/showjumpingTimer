@@ -3,6 +3,7 @@ let startTime = 0;
 const timerDisplay = document.getElementById('timer');
 const startButton = document.getElementById('startButton');
 const stopButton = document.getElementById('stopButton');
+const resetButton = document.getElementById('resetButton');
 function updateTimer() {
     if (timerDisplay !== null) {
         const currentTime = Date.now();
@@ -14,6 +15,16 @@ function updateTimer() {
         const display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}:${centiseconds.toString().padStart(2, '0')}`;
         timerDisplay.textContent = display;
     }
+}
+function resetTimer() {
+    // Clear the interval and reset timer values
+    if (intervalId !== null) {
+        window.clearInterval(intervalId);
+        intervalId = null;
+    }
+    startTime = Date.now();
+    console.log('Reset Called!');
+    updateTimer(); // Update the timer display
 }
 if (startButton !== null && stopButton !== null && timerDisplay !== null) {
     startButton.addEventListener('click', () => {
@@ -31,18 +42,6 @@ if (startButton !== null && stopButton !== null && timerDisplay !== null) {
     });
     updateTimer(); // Initialize the timer display
 }
-const resetButton = document.getElementById('resetButton');
-function resetTimer() {
-    // Clear the interval and reset timer values
-    if (intervalId !== null) {
-        window.clearInterval(intervalId);
-        intervalId = null;
-    }
-    startTime = Date.now();
-    console.log('Reset Called!');
-    updateTimer(); // Update the timer display
-}
-// Event listener for the Reset button
 if (resetButton !== null) {
     resetButton.addEventListener('click', resetTimer);
 }

@@ -6,13 +6,12 @@ const stopButton = document.getElementById('stopButton');
 function updateTimer() {
     if (timerDisplay !== null) {
         const currentTime = Date.now();
-        console.log(currentTime);
         const elapsedTime = currentTime - startTime;
         const minutes = Math.floor(elapsedTime / 60000);
-        console.log(minutes);
         const seconds = Math.floor((elapsedTime % 60000) / 1000);
-        console.log(seconds);
-        const display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        const milliseconds = Math.floor((elapsedTime % 60000));
+        const centiseconds = Math.floor((milliseconds % 1000) / 10);
+        const display = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}:${centiseconds.toString().padStart(2, '0')}`;
         timerDisplay.textContent = display;
     }
 }
@@ -20,7 +19,7 @@ if (startButton !== null && stopButton !== null && timerDisplay !== null) {
     startButton.addEventListener('click', () => {
         if (intervalId === null) {
             startTime = Date.now(); // Set startTime to the current time
-            intervalId = window.setInterval(updateTimer, 1000);
+            intervalId = window.setInterval(updateTimer, 10);
         }
     });
     stopButton.addEventListener('click', () => {

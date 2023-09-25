@@ -2,7 +2,9 @@
   "compilerOptions": {
     "target": "ES6",
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "lib": ["ES6", "ES2017", "DOM"]
+
   },
   "include": ["src/**/*.ts"]
 }

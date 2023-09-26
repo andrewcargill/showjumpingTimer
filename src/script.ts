@@ -14,7 +14,7 @@ function updateTimer() {
         const seconds: number = Math.floor((elapsedTime % 60000) / 1000);
         const milliseconds: number = Math.floor((elapsedTime % 60000));
         const centiseconds = Math.floor((milliseconds % 1000) / 10);
-        
+
         const display: string = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}:${centiseconds.toString().padStart(2, '0')}`;
         timerDisplay.textContent = display;
     }
@@ -27,7 +27,6 @@ function resetTimer() {
         intervalId = null;
     }
     startTime = Date.now();
-    console.log('Reset Called!')
     updateTimer(); // Update the timer display
 }
 
@@ -37,17 +36,14 @@ if (startButton !== null && stopButton !== null && timerDisplay !== null) {
             startTime = Date.now(); // Set startTime to the current time
             intervalId = window.setInterval(updateTimer, 10);
         }
-    });    
+    });
 
     stopButton.addEventListener('click', () => {
         if (intervalId !== null) {
-            console.log('stop button clicked')
             window.clearInterval(intervalId);
             intervalId = null;
         }
     });
-
-    updateTimer(); // Initialize the timer display
 }
 
 if (resetButton !== null) {

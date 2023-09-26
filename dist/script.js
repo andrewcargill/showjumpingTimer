@@ -23,7 +23,6 @@ function resetTimer() {
         intervalId = null;
     }
     startTime = Date.now();
-    console.log('Reset Called!');
     updateTimer(); // Update the timer display
 }
 if (startButton !== null && stopButton !== null && timerDisplay !== null) {
@@ -35,12 +34,10 @@ if (startButton !== null && stopButton !== null && timerDisplay !== null) {
     });
     stopButton.addEventListener('click', () => {
         if (intervalId !== null) {
-            console.log('stop button clicked');
             window.clearInterval(intervalId);
             intervalId = null;
         }
     });
-    updateTimer(); // Initialize the timer display
 }
 if (resetButton !== null) {
     resetButton.addEventListener('click', resetTimer);
